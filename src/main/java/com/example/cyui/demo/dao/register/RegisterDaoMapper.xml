@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.cyui.demo.dao.register.RegisterDao">
+
+    <resultMap id="RegisterResultMap" type="com.example.cyui.demo.entiy.Register">
+        <result property="registerNo" column="registerNo" jdbcType="INTEGER"/>
+        <result property="registerName" column="registerName" jdbcType="VARCHAR"/>
+        <result property="role" column="role" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="register">
+        registerNo,registerName,role,age,address,status
+    </sql>
+
+    <select id="selectRegisterByRegister" resultMap="RegisterResultMap" parameterType="com.example.cyui.demo.entiy.Register">
+        select <include refid="register"></include> FROM
+          register
+        <where>
+            <if test="registerName!=null">
+                registerName = #{registerName}
+            </if>
+            <if test="age!=null">
+               and  age = #{age}
+            </if>
+            <if test="address!=null">
+                and  address = #{address}
+            </if>
+            <if test="status!=null">
+                and  status = #{status}
+            </if>
+            <if test="role!=null">
+                and  role = #{role}
+            </if>
+        </where>
+    </select>
+</mapper>

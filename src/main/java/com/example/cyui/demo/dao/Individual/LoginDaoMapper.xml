@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.cyui.demo.dao.Individual.LoginDao">
+
+    <resultMap id="IndividualResultMap" type="com.example.cyui.demo.entiy.Individual">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="userName" column="USER_NAME" jdbcType="VARCHAR"/>
+        <result property="userPassword" column="USER_PASSWORD" jdbcType="VARCHAR"/>
+        <result property="userNickName" column="USER_NICE_NAME" jdbcType="VARCHAR"/>
+        <result property="userImgUrl" column="USER_IMG_URL" jdbcType="VARCHAR"/>
+        <result property="phoneNumber" column="PHONE_NUMBER" jdbcType="VARCHAR"/>
+        <result property="userBirthday" column="USER_BIRTHDAY" jdbcType="VARCHAR"/>
+        <result property="utime" column="UTIME" jdbcType="VARCHAR"/>
+        <result property="ctime" column="CTIME" jdbcType="VARCHAR"/>
+        <result property="role" column="ROLE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Individual">
+        ID,USER_NAME,USER_PASSWORD,USER_NICE_NAME,USER_IMG_URL,PHONE_NUMBER,USER_BIRTHDAY,UTIME,CTIME,ROLE
+    </sql>
+
+    <select id="selectIndividualByIndividual" resultMap="IndividualResultMap" parameterType="com.example.cyui.demo.entiy.Individual">
+        select <include refid="Individual"></include> FROM
+        individual
+        <where>
+            <if test="userName!=null">
+                USER_NAME = #{userName}
+            </if>
+            <if test="userPassword!=null">
+               and  USER_PASSWORD = #{userPassword}
+            </if>
+        </where>
+    </select>
+</mapper>

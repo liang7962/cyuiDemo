@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<#assign base="${springMacroRequestContext.contextPath}"/>
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+</head>
+<body>
+<div class="layui-form ">
+    <form method="post" action="">
+        <table class="layui-table" id="studentTable" cyType="pageGrid"
+               cyProps="url:'/frontframe/json/student.json',checkbox:'true',pageColor:'#2991d9'">
+            <thead>
+            <tr>
+                <th width="5%" param="{name:'stuId',isPrimary:'true',hide:'true'}">id</th>
+
+                <th width="10%" param="{name:'name'}">姓名</th>
+
+                <th width="5%" param="{name:'age'}">年龄</th>
+
+                <th width="10%" param="{name:'address'}">地址</th>
+
+                <th width="5%" param="{name:'sex',enumCode:'SexEnum'}">性别</th>
+
+
+                <th width="5%" param="{name:'state',codeName:'state',render:'Render.customState'}">状态</th>
+
+                <th width="10%" param="{name:'note'}">角色</th>
+
+
+                <th width="15%" param="{operate:'true',buttons:'Render.state,Render.edit,Render.delete'}">
+                    操作
+                </th>
+            </tr>
+
+            </thead>
+        </table>
+    </form>
+</div>
+
+</body>
+
+</html>
